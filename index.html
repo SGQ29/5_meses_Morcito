@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felices 5 meses, Mi amor ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-family:'Marcellus','Georgia',serif;color:#fff}
+
+/* Contenedor tipo "revista" */
+.app{position:relative;width:100%;max-width:440px;height:100dvh;max-height:780px;overflow:hidden;background:#000;border-radius:0}
+@media(min-width:480px){.app{border-radius:22px;box-shadow:0 10px 40px rgba(0,0,0,.5)}}
+.slides{display:flex;width:400%;height:100%;transition:transform .6s cubic-bezier(.65,.05,.25,1)}
+.page{width:25%;height:100%;overflow-y:auto;padding:26px 20px 90px;text-align:center}
+
+/* Corazón reutilizable (marco coral con foto) */
+.heart{position:relative;aspect-ratio:1/1;background:#f26b66;clip-path:url(#heartClip);padding:3.5%}
+.heart img{width:100%;height:100%;object-fit:cover;clip-path:url(#heartClip);display:block;background:#444}
+
+/* ---------- PÁGINA 1: portada ---------- */
+.p1{background:#000;color:#fff}
+.title{font-family:'Great Vibes',cursive;font-size:44px;line-height:1.05;margin:6px 0 4px}
+.sub{font-family:'Great Vibes',cursive;font-size:26px;color:#f26b66;margin-bottom:6px}
+.cover-hearts{position:relative;height:270px;margin:0 auto 6px;width:100%;max-width:340px}
+.cover-hearts .big{position:absolute;left:50%;top:0;width:230px;transform:translateX(-50%)}
+.cover-hearts .sm{position:absolute;width:88px;top:150px}
+.cover-hearts .sm.l{left:6px}
+.cover-hearts .sm.r{right:6px}
+.mes{font-size:30px;letter-spacing:2px;margin:6px 0 12px}
+.cal-week,.cal-days{display:grid;grid-template-columns:repeat(7,1fr);row-gap:9px;max-width:330px;margin:0 auto;font-size:16px}
+.cal-week{margin-bottom:10px;font-size:14px;letter-spacing:1px}
+.cal-days span{height:30px;display:flex;align-items:center;justify-content:center;position:relative}
+.cal-days .special{color:#fff;font-weight:bold}
+.cal-days .special::before{content:"";position:absolute;width:40px;height:40px;background:#f26b66;clip-path:url(#heartClip);z-index:0}
+.cal-days .special b{position:relative;z-index:1;font-weight:normal;font-size:16px}
+.hint{margin-top:18px;font-size:12px;letter-spacing:2px;color:#aaa}
+
+/* ---------- PÁGINA 2: árbol ---------- */
+.p2{background:#000;color:#fff}
+.p2 h2{font-family:'Great Vibes',cursive;font-weight:normal;font-size:38px;color:#fff;margin-bottom:6px}
+.tree-section{background:#0d0d0d;border-radius:16px;padding:14px;border:1px solid #f26b66}
+.tree-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.tree-title{font-size:16px;font-style:italic;color:#fff}
+.badge{font-size:9px;letter-spacing:1px;background:#f26b66;color:#fff;padding:3px 8px;border-radius:10px;font-weight:bold}
+.message-box{background:#1a1a1a;border:1px solid #f26b66;border-radius:20px;padding:8px 12px;font-size:14px;color:#fff;margin-bottom:6px;min-height:42px;display:flex;align-items:center;justify-content:center;transition:opacity .25s}
+.tree-svg{width:100%;max-width:300px;height:auto;overflow:visible}
+.leaf{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .25s,filter .25s}
+.leaf:hover{transform:scale(1.18);filter:brightness(1.08)}
+.leaf:active{transform:scale(.95)}
+.main-quote{font-size:13px;line-height:1.5;color:#ddd;font-style:italic;margin:16px 5px 10px}
+.signature{font-size:11px;letter-spacing:2px;color:#f26b66;font-weight:bold}
+
+/* ---------- PÁGINA 3: fotos ---------- */
+.p3{background:#000}
+.p3 h2{font-family:'Great Vibes',cursive;font-weight:normal;font-size:38px;margin-bottom:2px}
+.p3 .sub{margin-bottom:14px}
+.gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 2%}
+.gallery .heart{width:31%;cursor:pointer;transition:transform .25s}
+.gallery .heart:hover{transform:scale(1.08)}
+.gallery .heart:nth-child(3n+2){margin-top:14px}
+
+/* ---------- PÁGINA 4: galaxia de amor ---------- */
+.p4{background:#000;position:relative;padding:0;overflow:hidden}
+#galaxia{position:absolute;inset:0;width:100%;height:100%;display:block}
+.p4 .te-amo{position:absolute;left:0;right:0;top:63%;font-family:'Great Vibes',cursive;font-size:64px;color:#fff;text-shadow:0 0 14px #ff6fa5,0 0 30px #ff3d8b;pointer-events:none}
+.p4 .te-sub{position:absolute;left:0;right:0;top:77%;font-size:12px;letter-spacing:3px;color:#ff9fc2;pointer-events:none}
+
+/* Visor */
+.lightbox{position:absolute;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:30;flex-direction:column;gap:14px}
+.lightbox.on{display:flex}
+.lightbox .heart{width:min(86%,360px)}
+.lightbox small{color:#aaa;font-size:12px;letter-spacing:2px}
+
+/* Navegación */
+.nav{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:16px;padding:14px;z-index:10;background:linear-gradient(transparent,rgba(0,0,0,.35))}
+.nav button{width:38px;height:38px;border-radius:50%;border:none;background:#f26b66;color:#fff;font-size:16px;cursor:pointer;transition:transform .2s,opacity .2s}
+.nav button:hover{transform:scale(1.1)}
+.nav button:disabled{opacity:.3;cursor:default}
+.dots{display:flex;gap:8px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#ffffff66;border:1px solid #f26b66;transition:all .3s}
+.dots i.on{background:#f26b66;transform:scale(1.25)}
+#musicBtn,#sigBtn{position:absolute;top:12px;right:12px;z-index:20;width:36px;height:36px;border-radius:50%;border:none;background:#ffffff22;color:#fff;font-size:16px;cursor:pointer;backdrop-filter:blur(4px)}
+#sigBtn{right:54px}
+.heart img{object-fit:var(--ajuste,cover)}
+</style>
+</head>
+<body>
+
+<!-- Forma de corazón para recortes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+      <path d="M0.5,0.95 C0.5,0.95 0.02,0.62 0.02,0.30 C0.02,0.12 0.16,0.03 0.30,0.03 C0.40,0.03 0.47,0.09 0.5,0.15 C0.53,0.09 0.60,0.03 0.70,0.03 C0.84,0.03 0.98,0.12 0.98,0.30 C0.98,0.62 0.5,0.95 0.5,0.95 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<audio id="musica" preload="auto"></audio>
+
+<div class="app" id="app">
+  <button id="musicBtn" title="Música">🎵</button>
+  <button id="sigBtn" title="Siguiente canción">⏭</button>
+
+  <div class="slides" id="slides">
+
+    <!-- PÁGINA 1: Portada / calendario -->
+    <section class="page p1">
+      <div class="title">Felices 5 meses</div>
+      <div class="sub">Mi amor</div>
+
+      <div class="cover-hearts">
+        <div class="heart big"><img id="imgPortada" alt=""></div>
+        <div class="heart sm l"><img id="imgPeq1" alt=""></div>
+        <div class="heart sm r"><img id="imgPeq2" alt=""></div>
+      </div>
+
+      <div class="mes">OCTUBRE</div>
+      <div class="cal-week"><span>LU</span><span>MA</span><span>MI</span><span>JU</span><span>VI</span><span>SA</span><span>DO</span></div>
+      <div class="cal-days" id="calDias"></div>
+      <div class="hint">DESLIZA ❯</div>
+    </section>
+
+    <!-- PÁGINA 2: Árbol -->
+    <section class="page p2">
+      <h2>Árbol del Amor</h2>
+      <div class="tree-section">
+        <div class="tree-header">
+          <span class="tree-title">Nuestras frases</span>
+          <span class="badge">TOCA LOS CORAZONES</span>
+        </div>
+        <div class="message-box" id="mensajeArbol">✨ Haz clic en cualquier corazón del árbol</div>
+        <svg class="tree-svg" viewBox="0 0 240 250" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="corazon" d="M 0 -5 C -2 -11 -11 -10 -11 -3 C -11 3 -4 7 0 12 C 4 7 11 3 11 -3 C 11 -10 2 -11 0 -5 Z"/>
+          </defs>
+          <ellipse cx="120" cy="238" rx="48" ry="6" fill="#fff" opacity="0.08"/>
+          <path d="M 98 238 C 104 195 102 155 94 125 C 88 108 74 96 62 80 L 72 72 C 86 88 102 98 120 102 L 120 238 Z" fill="#8a4a47"/>
+          <path d="M 142 238 C 136 195 138 155 146 125 C 152 108 166 96 178 80 L 168 72 C 154 88 138 98 120 102 L 120 238 Z" fill="#c27770"/>
+          <path d="M 113 108 L 117 52 L 123 52 L 127 108 Z" fill="#a8605b"/>
+          <path d="M 100 112 C 92 100 86 92 80 84 L 86 80 C 94 90 102 98 108 104 Z" fill="#6f3b3c"/>
+          <path d="M 140 112 C 148 100 154 92 160 84 L 154 80 C 146 90 138 98 132 104 Z" fill="#a65f5a"/>
+          <g id="hojas"></g>
+        </svg>
+      </div>
+      <div class="main-quote">"Me gusta la compañía que tenemos, me haces feliz, me siento en paz. Gracias por tu paciencia."</div>
+      <div class="signature">POLAR ❤️ JACQUELINE</div>
+    </section>
+
+    <!-- PÁGINA 3: Fotos -->
+    <section class="page p3">
+      <h2>Nuestros recuerdos</h2>
+      <div class="sub">toca un corazón</div>
+      <div class="gallery" id="galeria"></div>
+    </section>
+
+    <!-- PÁGINA 4: Te Amo (galaxia) -->
+    <section class="page p4">
+      <canvas id="galaxia"></canvas>
+      <div class="te-amo">Te Amo</div>
+      <div class="te-sub">HOY, MAÑANA Y SIEMPRE</div>
+    </section>
+  </div>
+
+  <div class="lightbox" id="visor">
+    <div class="heart"><img id="visorImg" src="" alt=""></div>
+    <small>TOCA PARA CERRAR</small>
+  </div>
+
+  <div class="nav">
+    <button id="prev" aria-label="Anterior">❮</button>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
+    <button id="next" aria-label="Siguiente">❯</button>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   CONFIGURACIÓN: aquí cambias canciones e imágenes
+   (los archivos deben estar en la misma carpeta que este index.html)
+   ===================================================== */
+const CONFIG = {
+  // Canciones: una o varias. Si pones varias, suenan en orden y se repiten.
+  canciones: [
+    "cancion.mp3"
+    // , "cancion2.mp3"
+    // , "cancion3.mp3"
+  ],
+  volumen: 0.5,                 // de 0 (silencio) a 1 (máximo)
+
+  // Portada (página 1)
+  portada: "amor.jpg",          // corazón grande
+  portadaPequenas: ["feli.jpg", "felij.jpg"],   // corazones pequeños (izq. y der.)
+
+  // Fotos de la página 3 (corazones) y de la galaxia (página 4)
+  fotos: [
+    "amor.jpg", "feli.jpg", "felij.jpg", "familia.jpg", "nojada.jpg",
+    "Ojos.jpg", "Diosa.jpg", "divina.jpg", "bonita.jpg", "cariño.jpg"
+  ],
+
+  // "cover" = llena el corazón recortando la foto
+  // "contain" = muestra la foto completa sin recortar
+  ajusteFotos: "cover"
+};
+
+// Aplicar imágenes de la portada
+document.documentElement.style.setProperty("--ajuste", CONFIG.ajusteFotos);
+document.getElementById("imgPortada").src = CONFIG.portada;
+document.getElementById("imgPeq1").src = CONFIG.portadaPequenas[0];
+document.getElementById("imgPeq2").src = CONFIG.portadaPequenas[1];
+
+/* ---------- Calendario (Octubre 2026: el 1 cae en jueves) ---------- */
+(function(){
+  const cont=document.getElementById("calDias");
+  let html="";
+  for(let i=0;i<3;i++) html+="<span></span>";
+  for(let d=1;d<=31;d++){
+    html += d===8 ? `<span class="special"><b>8</b></span>` : `<span>${d}</span>`;
+  }
+  cont.innerHTML=html;
+})();
+
+/* ---------- Árbol ---------- */
+const corazones=[
+  [120,34,2.3,"#d8433f","Te amo muchísimo ❤️"],
+  [84,52,2.0,"#ec6f50","Eres la mejor persona de mi vida 🌿"],
+  [158,50,2.0,"#f2b3b3","Gracias por todo tu cariño y paciencia ✨"],
+  [58,78,1.8,"#f0dcc0","Nunca me cansaré de ti 🤍"],
+  [182,80,1.8,"#e8604c","Me haces sentir en total paz 🕊️"],
+  [104,72,2.4,"#c9373a","Me encanta la compañía que tenemos 🫂"],
+  [140,76,2.2,"#f4c9b8","Juntos siempre mi vida 💫"],
+  [38,52,1.4,"#f2b3b3","Cada día contigo es mi favorito 🌷"],
+  [204,48,1.4,"#d8433f","Feliz 5 meses, mi amor ❤️"],
+  [122,100,1.6,"#ec6f50","Contigo todo es más bonito 🌸"]
+];
+function mostrarTexto(t){
+  const el=document.getElementById("mensajeArbol");
+  el.style.opacity=0;
+  setTimeout(()=>{el.textContent=t;el.style.opacity=1},250);
+}
+(function(){
+  const NS="http://www.w3.org/2000/svg", g=document.getElementById("hojas");
+  corazones.forEach(([x,y,s,c,m])=>{
+    const pos=document.createElementNS(NS,"g");
+    pos.setAttribute("transform",`translate(${x} ${y})`);
+    const hoja=document.createElementNS(NS,"g");
+    hoja.setAttribute("class","leaf");
+    hoja.addEventListener("click",()=>mostrarTexto(m));
+    const u=document.createElementNS(NS,"use");
+    u.setAttribute("href","#corazon");
+    u.setAttribute("fill",c);
+    u.setAttribute("transform",`scale(${s})`);
+    hoja.appendChild(u);pos.appendChild(hoja);g.appendChild(pos);
+  });
+})();
+
+/* ---------- Galería de corazones ---------- */
+const fotos=CONFIG.fotos;
+const visor=document.getElementById("visor"), visorImg=document.getElementById("visorImg");
+(function(){
+  const gal=document.getElementById("galeria");
+  fotos.forEach(f=>{
+    const d=document.createElement("div");
+    d.className="heart";
+    d.innerHTML=`<img src="${f}" alt="">`;
+    d.addEventListener("click",()=>{visorImg.src=f;visor.classList.add("on")});
+    gal.appendChild(d);
+  });
+  visor.addEventListener("click",()=>visor.classList.remove("on"));
+})();
+
+/* ---------- Páginas ---------- */
+let pagina=0;
+const total=4, slides=document.getElementById("slides");
+const prev=document.getElementById("prev"), next=document.getElementById("next");
+const dots=[...document.querySelectorAll("#dots i")];
+function ir(n){
+  pagina=Math.max(0,Math.min(total-1,n));
+  slides.style.transform=`translateX(-${pagina*100/total}%)`;
+  dots.forEach((d,i)=>d.classList.toggle("on",i===pagina));
+  if(window.galaxiaAmor) window.galaxiaAmor.toggle(pagina===3);
+  prev.disabled=pagina===0; next.disabled=pagina===total-1;
+}
+prev.onclick=()=>ir(pagina-1);
+next.onclick=()=>ir(pagina+1);
+ir(0);
+
+// Deslizar con el dedo
+let x0=null,y0=null;
+const app=document.getElementById("app");
+app.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+app.addEventListener("touchend",e=>{
+  if(x0===null)return;
+  const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) ir(pagina+(dx<0?1:-1));
+  x0=null;
+});
+// Teclado
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight")ir(pagina+1);
+  if(e.key==="ArrowLeft")ir(pagina-1);
+});
+
+/* ---------- Música de fondo ---------- */
+const audio=document.getElementById("musica"), btn=document.getElementById("musicBtn"), btnSig=document.getElementById("sigBtn");
+audio.volume=CONFIG.volumen;
+let cancion=0, sonando=false;
+audio.loop = CONFIG.canciones.length===1;
+if(CONFIG.canciones.length<2) btnSig.style.display="none";
+function cargar(n){
+  cancion=(n+CONFIG.canciones.length)%CONFIG.canciones.length;
+  audio.src=CONFIG.canciones[cancion];
+  if(sonando) audio.play().catch(()=>{});
+}
+cargar(0);
+audio.addEventListener("ended",()=>cargar(cancion+1));
+function actualizarBtn(){btn.textContent=sonando?"🎵":"🔇"}
+function iniciar(){
+  audio.play().then(()=>{sonando=true;actualizarBtn()}).catch(()=>{});
+}
+// Los navegadores exigen un toque del usuario: arranca en la primera interacción
+["click","touchend","keydown"].forEach(ev=>
+  document.addEventListener(ev,function once(){
+    if(!sonando && !audio.dataset.manual) iniciar();
+    document.removeEventListener(ev,once);
+  })
+);
+btn.addEventListener("click",e=>{
+  e.stopPropagation();
+  audio.dataset.manual="1";
+  if(sonando){audio.pause();sonando=false}
+  else{audio.play().then(()=>{sonando=true;actualizarBtn()}).catch(()=>{});}
+  actualizarBtn();
+});
+btnSig.addEventListener("click",e=>{
+  e.stopPropagation();
+  audio.dataset.manual="1";
+  cargar(cancion+1);
+  if(!sonando) iniciar();
+});
+actualizarBtn();
+
+/* ---------- Galaxia de amor (página 4) ---------- */
+window.galaxiaAmor=(function(){
+  const cv=document.getElementById("galaxia"), ctx=cv.getContext("2d");
+  let W=0,H=0,raf=null,t=0;
+  const textos=["Te Amo","My love","Mi diosa","Eres preciosa","Me encantas","Amor de mi vida","❤️","Mi vida","Mi todo","Para ti","Mi reina","Una diosa","Juntos siempre","Polar ❤️ Jacqueline"];
+  const imgs=fotos.map(f=>{const i=new Image();i.src=f;return i});
+  const rings=[
+    {a:.43,flat:.26,tilt:.07,speed:.0045},
+    {a:.30,flat:.20,tilt:-.06,speed:-.0035}
+  ];
+  // Mezclar frases y fotos en los dos anillos
+  const lista=[];
+  for(let k=0;k<Math.max(textos.length,imgs.length);k++){
+    if(textos[k]) lista.push({tipo:"txt",txt:textos[k]});
+    if(imgs[k]) lista.push({tipo:"img",img:imgs[k]});
+  }
+  const cuenta=[0,0];
+  lista.forEach((it,i)=>{it.ring=i%2;it.idx=cuenta[it.ring]++;});
+  lista.forEach(it=>{it.base=(it.idx/cuenta[it.ring])*Math.PI*2;});
+
+  // Corazones de la esfera
+  const cols=["#ff4d5e","#ff7a6b","#ffb3a7","#ffffff","#e8364f","#ffd0c8"];
+  const esfera=[];
+  for(let i=0;i<110;i++) esfera.push({lon:Math.random()*Math.PI*2,lat:Math.asin(Math.random()*2-1),c:cols[i%cols.length],s:.1+Math.random()*.08});
+  // Estrellas y corazones flotando
+  const estrellas=Array.from({length:170},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.7,ph:Math.random()*6}));
+  const flotan=Array.from({length:26},()=>({x:Math.random(),y:Math.random(),s:3+Math.random()*6,v:.0006+Math.random()*.0012,ph:Math.random()*6,c:["#ff5c8a","#ff3d6e","#ff8fb1","#e8365f"][Math.floor(Math.random()*4)]}));
+
+  function corazon(x,y,s){
+    ctx.beginPath();
+    ctx.moveTo(x,y+s);
+    ctx.bezierCurveTo(x-s*1.4,y-s*.2,x-s*.7,y-s*1.2,x,y-s*.4);
+    ctx.bezierCurveTo(x+s*.7,y-s*1.2,x+s*1.4,y-s*.2,x,y+s);
+    ctx.closePath();
+  }
+  function resize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    W=cv.clientWidth;H=cv.clientHeight;
+    cv.width=W*dpr;cv.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function luna(){
+    const x=W*.74,y=H*.07+10,r=W*.07;
+    const g=ctx.createRadialGradient(x,y,r*.2,x,y,r*2.2);
+    g.addColorStop(0,"rgba(255,255,255,.35)");g.addColorStop(1,"rgba(255,255,255,0)");
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*2.2,0,7);ctx.fill();
+    const m=ctx.createRadialGradient(x-r*.3,y-r*.3,r*.1,x,y,r);
+    m.addColorStop(0,"#f4f4f4");m.addColorStop(1,"#9a9a9a");
+    ctx.fillStyle=m;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
+    ctx.fillStyle="rgba(90,90,90,.35)";
+    [[-.3,-.2,.22],[.25,.1,.18],[-.1,.4,.14],[.35,-.35,.1]].forEach(([dx,dy,k])=>{ctx.beginPath();ctx.arc(x+dx*r,y+dy*r,k*r,0,7);ctx.fill();});
+  }
+  function planeta(cx,cy,R){
+    // brillo
+    const g=ctx.createRadialGradient(cx,cy,R*.8,cx,cy,R*1.7);
+    g.addColorStop(0,"rgba(255,110,140,.45)");g.addColorStop(1,"rgba(255,110,140,0)");
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R*1.7,0,7);ctx.fill();
+    const b=ctx.createRadialGradient(cx-R*.35,cy-R*.35,R*.1,cx,cy,R);
+    b.addColorStop(0,"#fff1ec");b.addColorStop(.55,"#f7a794");b.addColorStop(1,"#c9453f");
+    ctx.fillStyle=b;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fill();
+    const rot=t*.012;
+    esfera.forEach(h=>{
+      const lon=h.lon+rot;
+      const x=Math.cos(h.lat)*Math.sin(lon),y=Math.sin(h.lat),z=Math.cos(h.lat)*Math.cos(lon);
+      if(z<.08) return;
+      ctx.globalAlpha=Math.min(1,z*1.4);
+      ctx.fillStyle=h.c;
+      corazon(cx+x*R*.9,cy-y*R*.9,R*h.s*(.45+.55*z));
+      ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    // sombra para dar volumen
+    const sh=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.5,cx,cy,R*1.02);
+    sh.addColorStop(0,"rgba(0,0,0,0)");sh.addColorStop(1,"rgba(60,0,20,.45)");
+    ctx.fillStyle=sh;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fill();
+  }
+  function dibujarItem(o){
+    const {x,y,z,sc,it,ang}=o;
+    const al=.45+.55*((z+1)/2);
+    ctx.save();
+    ctx.globalAlpha=al;
+    ctx.translate(x,y);
+    if(it.tipo==="txt"){
+      ctx.font=`${(it.txt==="Te Amo"?19:14)*sc}px Marcellus, Georgia, serif`;
+      ctx.textAlign="center";ctx.textBaseline="middle";
+      ctx.shadowColor="#ff3d8b";ctx.shadowBlur=8;
+      ctx.fillStyle="#ffd1e3";
+      ctx.fillText(it.txt,0,0);
+    }else{
+      const im=it.img; if(!im.complete||!im.naturalWidth){ctx.restore();return;}
+      const sz=52*sc, r=6*sc;
+      ctx.rotate(Math.sin(ang*2)*.14);
+      ctx.shadowColor="rgba(255,120,170,.6)";ctx.shadowBlur=10;
+      ctx.fillStyle="#fff";
+      ctx.beginPath();ctx.roundRect(-sz/2-3,-sz/2-3,sz+6,sz+6,r);ctx.fill();
+      ctx.shadowBlur=0;
+      ctx.beginPath();ctx.roundRect(-sz/2,-sz/2,sz,sz,r*.6);ctx.clip();
+      const side=Math.min(im.naturalWidth,im.naturalHeight);
+      ctx.drawImage(im,(im.naturalWidth-side)/2,(im.naturalHeight-side)/2,side,side,-sz/2,-sz/2,sz,sz);
+    }
+    ctx.restore();
+  }
+  function frame(){
+    t++;
+    ctx.clearRect(0,0,W,H);
+    // fondo
+    ctx.fillStyle="#000";ctx.fillRect(0,0,W,H);
+    // estrellas
+    estrellas.forEach(e=>{
+      ctx.globalAlpha=.65+.35*Math.abs(Math.sin(t*.02+e.ph));
+      ctx.fillStyle="#fff";ctx.shadowColor="#fff";ctx.shadowBlur=e.r*3;
+      ctx.beginPath();ctx.arc(e.x*W,e.y*H,e.r,0,7);ctx.fill();
+    });
+    ctx.globalAlpha=1;ctx.shadowBlur=0;
+    luna();
+    // corazones flotando
+    flotan.forEach(f=>{
+      f.y-=f.v; if(f.y<-.05){f.y=1.05;f.x=Math.random();}
+      ctx.globalAlpha=.55+.3*Math.sin(t*.03+f.ph);
+      ctx.fillStyle=f.c;ctx.shadowColor=f.c;ctx.shadowBlur=10;
+      corazon(f.x*W+Math.sin(t*.01+f.ph)*8,f.y*H,f.s);ctx.fill();
+    });
+    ctx.shadowBlur=0;ctx.globalAlpha=1;
+
+    const cx=W/2,cy=H*.37,R=Math.min(W*.16,H*.11);
+    // posiciones de los elementos
+    const pos=lista.map(it=>{
+      const rg=rings[it.ring], a=rg.a*W;
+      const ang=it.base+t*rg.speed;
+      const px=a*Math.cos(ang), py=a*rg.flat*Math.sin(ang);
+      const x=cx+px*Math.cos(rg.tilt)-py*Math.sin(rg.tilt);
+      const y=cy+px*Math.sin(rg.tilt)+py*Math.cos(rg.tilt);
+      const z=Math.sin(ang);
+      return {x,y,z,sc:.65+.45*((z+1)/2),it,ang};
+    }).sort((p,q)=>p.z-q.z);
+    // anillos
+    ctx.lineWidth=1;
+    rings.forEach(rg=>{
+      ctx.strokeStyle="rgba(255,255,255,.13)";
+      ctx.beginPath();ctx.ellipse(cx,cy,rg.a*W,rg.a*W*rg.flat,rg.tilt,0,Math.PI*2);ctx.stroke();
+    });
+    pos.filter(p=>p.z<0).forEach(dibujarItem);
+    planeta(cx,cy,R);
+    pos.filter(p=>p.z>=0).forEach(dibujarItem);
+    raf=requestAnimationFrame(frame);
+  }
+  window.addEventListener("resize",()=>{if(raf)resize()});
+  return{toggle(on){
+    if(on&&!raf){resize();raf=requestAnimationFrame(frame);}
+    else if(!on&&raf){cancelAnimationFrame(raf);raf=null;}
+  }};
+})();
+</script>
+</body>
+</html>
