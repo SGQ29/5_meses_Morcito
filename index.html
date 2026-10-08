@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felices 5 Meses, Mi Amor ❤️</title>
+    <title>Felices 5 meses, Mi amor ❤️</title>
     <style>
         * {
             margin: 0;
@@ -14,168 +14,185 @@
 
         body {
             font-family: 'Georgia', serif;
-            background-color: #f4f1ea;
-            color: #4a5240;
+            background-color: #f1ebd8;
+            color: #556048;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 25px 15px;
+            padding: 20px 10px;
             text-align: center;
         }
 
         .card {
-            max-width: 480px;
+            max-width: 410px;
             width: 100%;
-            background: #fcfbf7;
-            border-radius: 24px;
-            padding: 30px 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2ddd3;
+            background: #faf8f5;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e7e2d3;
         }
 
         h1 {
-            font-size: 26px;
-            color: #5c6850;
+            font-size: 24px;
+            color: #58634c;
             font-weight: normal;
-            margin-bottom: 20px;
-            line-height: 1.3;
+            margin-bottom: 4px;
         }
 
-        /* Foto principal en corazón */
+        .subtitle {
+            font-size: 18px;
+            font-style: italic;
+            color: #8c987e;
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            width: 40px;
+            height: 1.5px;
+            background-color: #a2b292;
+            margin: 0 auto 18px auto;
+        }
+
+        /* Contenedor de la foto principal */
         .heart-frame {
-            width: 220px;
-            height: 200px;
+            position: relative;
+            width: 200px;
+            height: 180px;
             margin: 0 auto 15px auto;
-            clip-path: path("M 110 185 C 110 185 10 120 10 60 C 10 25 38 5 70 5 C 90 5 102 16 110 25 C 118 16 130 5 150 5 C 182 5 210 25 210 60 C 210 120 110 185 110 185 Z");
-            background: #b5c2a3;
-            padding: 4px;
+            clip-path: path("M 100 165 C 100 165 10 108 10 53 C 10 22 35 5 64 5 C 82 5 93 15 100 23 C 107 15 118 5 136 5 C 165 5 190 22 190 53 C 190 108 100 165 100 165 Z");
+            background: #cfd8c7;
+            padding: 3px;
         }
 
         #galeriaFoto {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            clip-path: path("M 110 185 C 110 185 10 120 10 60 C 10 25 38 5 70 5 C 90 5 102 16 110 25 C 118 16 130 5 150 5 C 182 5 210 25 210 60 C 210 120 110 185 110 185 Z");
+            clip-path: path("M 100 165 C 100 165 10 108 10 53 C 10 22 35 5 64 5 C 82 5 93 15 100 23 C 107 15 118 5 136 5 C 165 5 190 22 190 53 C 190 108 100 165 100 165 Z");
             transition: opacity 0.4s ease;
         }
 
+        /* Controles de imagen */
         .controles {
             margin: 10px 0 20px 0;
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            align-items: center;
             justify-content: center;
         }
 
         button {
-            padding: 8px 18px;
-            font-size: 13px;
-            border: 1px solid #a8b896;
-            border-radius: 20px;
-            background: #f4f7f0;
-            color: #4a5240;
+            padding: 5px 14px;
+            font-size: 12px;
+            border: 1px solid #9fb090;
+            border-radius: 15px;
+            background: #ffffff;
+            color: #556048;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         button:hover {
-            background: #8fa17a;
+            background: #9fb090;
             color: #ffffff;
         }
 
-        /* Árbol interactivo con corazones */
-        .tree-container {
-            position: relative;
-            width: 100%;
-            height: 260px;
-            margin: 15px 0 25px 0;
-            background: #f7f5ed;
-            border-radius: 18px;
-            border: 1px solid #e5dfd3;
-            overflow: hidden;
+        .contador {
+            font-size: 12px;
+            color: #7b886f;
         }
 
-        .trunk {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 35px;
-            height: 100px;
-            background: #8a735c;
-            border-radius: 10px 10px 0 0;
+        /* Sección del Árbol */
+        .tree-section {
+            background: #fdfbf7;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #eae5d8;
         }
 
-        .branch-left {
-            position: absolute;
-            bottom: 60px;
-            left: 42%;
-            width: 35px;
-            height: 12px;
-            background: #8a735c;
-            transform: rotate(-30deg);
-            border-radius: 5px;
+        .tree-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
-        .branch-right {
-            position: absolute;
-            bottom: 70px;
-            right: 42%;
-            width: 35px;
-            height: 12px;
-            background: #8a735c;
-            transform: rotate(30deg);
-            border-radius: 5px;
+        .tree-title {
+            font-size: 16px;
+            font-style: italic;
+            color: #58634c;
         }
 
-        /* Hojas de corazones con texto */
-        .heart-leaf {
-            position: absolute;
+        .badge {
+            font-size: 9px;
+            letter-spacing: 1px;
+            background: #e2ebd9;
+            color: #617053;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* Clic en las hojas (Mensaje desplegable suave) */
+        .message-box {
+            background: #ffffff;
+            border: 1px solid #c9d6bf;
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #4f5a43;
+            margin-bottom: 15px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 8px;
-            clip-path: path("M 25 42 C 25 42 2 27 2 13 C 2 5 8 1 15 1 C 20 1 23 4 25 6 C 27 4 30 1 35 1 C 42 1 48 5 48 13 C 48 27 25 42 25 42 Z");
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
 
-        .heart-leaf:hover {
-            transform: scale(1.15);
+        /* Ilustración del árbol SVG */
+        .tree-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
 
-        /* Variaciones de colores suaves y ubicaciones */
-        .leaf-1 { width: 90px; height: 80px; background: #a2b38b; top: 25px; left: 18%; font-size: 9px; }
-        .leaf-2 { width: 100px; height: 90px; background: #c2a68c; top: 15px; left: 38%; font-size: 10px; }
-        .leaf-3 { width: 95px; height: 85px; background: #8fa17a; top: 30px; right: 16%; font-size: 9px; }
-        .leaf-4 { width: 105px; height: 95px; background: #b5c2a3; top: 80px; left: 10%; font-size: 9.5px; }
-        .leaf-5 { width: 110px; height: 100px; background: #9bb088; top: 70px; left: 36%; font-size: 10px; }
-        .leaf-6 { width: 100px; height: 90px; background: #d0beaa; top: 85px; right: 12%; font-size: 9.5px; }
+        .tree-svg {
+            width: 180px;
+            height: 190px;
+        }
 
-        .leaf-text {
-            transform: translateY(-4px);
-            padding: 0 4px;
-            line-height: 1.1;
+        .leaf {
+            cursor: pointer;
+            transition: transform 0.3s ease, fill 0.3s ease;
+        }
+
+        .leaf:hover {
+            transform: scale(1.25);
+            transform-origin: center;
         }
 
         /* Calendario */
         .calendar-box {
-            background: #f7f5ed;
+            background: #fdfbf7;
             border-radius: 16px;
-            padding: 16px 12px;
+            padding: 18px 14px;
             margin-bottom: 20px;
-            border: 1px solid #e5dfd3;
+            border: 1px solid #eae5d8;
         }
 
         .calendar-title {
-            font-size: 14px;
+            font-size: 11px;
             letter-spacing: 2px;
-            color: #728062;
-            margin-bottom: 10px;
+            color: #8c987e;
+            margin-bottom: 12px;
             font-weight: bold;
         }
 
@@ -183,46 +200,64 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 4px;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .weekdays {
-            color: #8fa07e;
+            color: #8c987e;
             font-weight: bold;
             margin-bottom: 6px;
         }
 
         .day {
             padding: 4px 0;
-            color: #58634c;
+            color: #556048;
         }
 
         .day.special {
-            background-color: #a0b28e;
+            background-color: #9fb090;
             color: white;
             font-weight: bold;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             margin: 0 auto;
+            position: relative;
         }
 
-        /* Mensaje Poético */
-        .message {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #505a46;
-            font-style: italic;
+        .heart-icon {
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            font-size: 8px;
+            color: #bd5959;
+        }
+
+        /* Sección Inferior de Texto */
+        .bottom-line {
+            width: 100%;
+            height: 1px;
+            background-color: #ded9ca;
             margin-bottom: 15px;
-            padding: 0 10px;
         }
 
-        .firma {
-            font-size: 16px;
-            color: #728062;
+        .main-quote {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #58634c;
+            font-style: italic;
+            margin-bottom: 12px;
+            padding: 0 5px;
+        }
+
+        .signature {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #8c987e;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -230,53 +265,97 @@
 <body>
 
     <div class="card">
-        <h1>Felices 5 meses,<br>Mi amor</h1>
+        <h1>Felices 5 meses,</h1>
+        <div class="subtitle">Mi amor</div>
+        <div class="divider"></div>
 
-        <!-- Foto principal en corazón -->
+        <!-- Foto principal en marco de corazón -->
         <div class="heart-frame">
-            <img id="galeriaFoto" src="amor.jpg" alt="Foto juntos">
+            <img id="galeriaFoto" src="amor.jpg" alt="Foto juntas">
         </div>
 
         <div class="controles">
             <button onclick="fotoAnterior()">❮ Anterior</button>
+            <span class="contador" id="contadorFotos">1 / 10</span>
             <button onclick="fotoSiguiente()">Siguiente ❯</button>
         </div>
 
-        <!-- Árbol con hojas de corazón y frases -->
-        <div class="tree-container">
-            <div class="trunk"></div>
-            <div class="branch-left"></div>
-            <div class="branch-right"></div>
+        <!-- Árbol interactivo -->
+        <div class="tree-section">
+            <div class="tree-header">
+                <span class="tree-title">Árbol del Amor</span>
+                <span class="badge">TOCA LAS HOJAS</span>
+            </div>
 
-            <div class="heart-leaf leaf-1"><span class="leaf-text">Te amo</span></div>
-            <div class="heart-leaf leaf-2"><span class="leaf-text">Eres la mejor</span></div>
-            <div class="heart-leaf leaf-3"><span class="leaf-text">Gracias por todo</span></div>
-            <div class="heart-leaf leaf-4"><span class="leaf-text">Nunca me cansaré de ti</span></div>
-            <div class="heart-leaf leaf-5"><span class="leaf-text">Mi paz</span></div>
-            <div class="heart-leaf leaf-6"><span class="leaf-text">Juntos siempre</span></div>
+            <div class="message-box" id="mensajeArbol">
+                ✨ Haz clic en cualquier corazón del árbol
+            </div>
+
+            <div class="tree-container">
+                <svg class="tree-svg" viewBox="0 0 200 200">
+                    <!-- Tronco y ramas -->
+                    <path d="M 95 190 C 95 140 85 110 65 80 C 60 72 50 60 40 50 M 65 80 C 80 85 90 90 100 80 M 98 130 C 110 110 130 85 150 70 M 130 85 C 135 75 140 65 145 55" 
+                          stroke="#6e5a47" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+                    <!-- Hojas interactivas con corazones -->
+                    <g class="leaf" onclick="mostrarTexto('Te amo muchísimo ❤️')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#9eb08f" transform="scale(0.5) translate(20,20)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Eres la mejor persona de mi vida 🌿')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#7d916d" transform="scale(0.5) translate(80,10)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Gracias por todo tu cariño y paciencia ✨')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#c4b898" transform="scale(0.5) translate(140,50)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Nunca me cansaré de ti 🤍')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#8f9e80" transform="scale(0.5) translate(190,40)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Me haces sentir en total paz 🕊️')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#d2dec8" transform="scale(0.45) translate(110,120)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Me encanta la compañía que tenemos 🫂')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#58634c" transform="scale(0.45) translate(250,110)"/>
+                    </g>
+
+                    <g class="leaf" onclick="mostrarTexto('Juntos siempre mi vida 💫')">
+                        <path d="M 40 45 C 40 40 32 35 25 40 C 18 35 10 40 10 48 C 10 58 25 68 25 68 C 25 68 40 58 40 48 Z" fill="#9eb08f" transform="scale(0.4) translate(190,180)"/>
+                    </g>
+                </svg>
+            </div>
         </div>
 
-        <!-- Calendario con el día 8 destacado -->
+        <!-- Calendario -->
         <div class="calendar-box">
-            <div class="calendar-title">OCTUBRE 2026</div>
+            <div class="calendar-title">NUESTRA FECHA ESPECIAL</div>
             <div class="weekdays">
                 <span>LU</span><span>MA</span><span>MI</span><span>JU</span><span>VI</span><span>SA</span><span>DO</span>
             </div>
             <div class="days-grid">
                 <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
-                <span>5</span><span>6</span><span>7</span><span class="day special">8</span><span>9</span><span>10</span><span>11</span>
+                <span>5</span><span>6</span><span>7</span>
+                <span class="day special">8<span class="heart-icon">❤️</span></span>
+                <span>9</span><span>10</span><span>11</span>
                 <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
                 <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
                 <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
             </div>
         </div>
 
-        <!-- Frase Poética Sencilla -->
-        <div class="message">
-            Me gusta la compañía que tenemos, me haces feliz, me siento en paz. Gracias por tu paciencia.
+        <div class="bottom-line"></div>
+
+        <!-- Mensaje final y firmas -->
+        <div class="main-quote">
+            "Me gusta la compañía que tenemos, me haces feliz, me siento en paz. Gracias por tu paciencia."
         </div>
 
-        <div class="firma">Koalita ❤️</div>
+        <div class="signature">
+            POLAR ❤️ JACQUELINE
+        </div>
     </div>
 
     <script>
@@ -295,26 +374,35 @@
 
         let indice = 0;
         const img = document.getElementById("galeriaFoto");
+        const contador = document.getElementById("contadorFotos");
 
-        function mostrarFoto() {
+        function actualizarFoto() {
             img.style.opacity = 0;
             setTimeout(() => {
                 img.src = fotos[indice];
                 img.style.opacity = 1;
+                contador.textContent = `${indice + 1} / ${fotos.length}`;
             }, 300);
         }
 
         function fotoSiguiente() {
             indice = (indice + 1) % fotos.length;
-            mostrarFoto();
+            actualizarFoto();
         }
 
         function fotoAnterior() {
             indice = (indice - 1 + fotos.length) % fotos.length;
-            mostrarFoto();
+            actualizarFoto();
         }
 
-        setInterval(fotoSiguiente, 4000);
+        function mostrarTexto(texto) {
+            const el = document.getElementById("mensajeArbol");
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.textContent = texto;
+                el.style.opacity = 1;
+            }, 250);
+        }
     </script>
 
 </body>
